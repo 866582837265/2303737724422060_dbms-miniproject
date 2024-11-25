@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input[type="text"], input[type="date"], input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #af4ca7;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a045a0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Event</h1>
+    <form action="/edit/{{ event[0] }}" method="POST">
+        <label for="eventid">Event ID:</label>
+        <input type="text" name="eventid" id="eventid" value="{{ event[0] }}" readonly>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="{{ event[1] }}" required>
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" value="{{ event[2] }}" required>
+
+        <label for="time">Time:</label>
+        <input type="time" name="time" id="time" value="{{ event[3] }}" required>
+
+        <label for="venue">Venue:</label>
+        <input type="text" name="venue" id="venue" value="{{ event[4] }}" required>
+
+        <button type="submit">Update Event</button>
+    </form>
+    <a href="/event">Go Back</a>
+</body>
+</html>

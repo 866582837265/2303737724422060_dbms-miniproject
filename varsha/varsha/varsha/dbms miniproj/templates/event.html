@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .add-button {
+            text-align: center;
+            margin: 20px;
+        }
+        .add-button a {
+            padding: 10px 20px;
+            background-color: #af4c99;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .add-button a:hover {
+            background-color: #4583a0;
+        }
+        form {
+            text-align: center;
+            margin: 20px;
+        }
+        input[type="text"] {
+            width: 30%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #c270ad;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c06fac;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #d16db8;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        a[href*="delete"] {
+            background-color: #7bb1ca;
+            color: white;
+        }
+        a[href*="edit"] {
+            background-color: #FFEB3B;  /* Yellow color for Edit button */
+            color: black;
+        }
+        a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event Details</h1>
+
+    <!-- Add Event Button -->
+    <div class="add-button">
+        <a href="/add">Add Event</a>
+    </div>
+
+    <!-- Search Form -->
+    <form action="/event" method="POST">
+        <input type="text" name="search_eventid" placeholder="Search by Event ID" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Venue</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in event %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>
+                    <a href="/delete/{{ row[0] }}">Delete</a>
+                    <a href="/edit/{{ row[0] }}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
